@@ -1,53 +1,6 @@
 
-/*
-Notes:
+#include <6510.h>
 
-- addressing modes:
-    implied - A
-    immediate - BYTE[PC + 1]
-    relative - BYTE[PC + SIGNED[PC + 1]]
-
-    zeropage - [BYTE[PC + 1]]
-     zeropagex - [BYTE[PC + 1] + X]
-     zeropagey - [BYTE[PC + 1] + Y]
-
-    absolute - [WORD[PC + 1]]
-     absolutex - [WORD[PC + 1] + X]
-     absolutey - [WORD[PC + 1] + Y]
-
-    indirect - [[WORD[PC + 1]]]
-     indirectx - [[WORD[PC + 1]] + X]
-     indirecty - [[WORD[PC + 1]] + Y]
-*/
-
-typedef enum { N, V, X, B, D, I, Z, C } Flag;
-
-class Cpu6510 {
-
- private:
-
-/* ---------
- * registers
- */
-  uint16_t pc_; // program counter
-  uint8_t s_; // stack pointer
-  uint8_t p_; // processor status
-  uint8_t a_; // accumulator
-  uint8_t x_; // index register x
-  uint8_t y_; // index register y
-
-  Flag IsSet(Flag flag);
-
-  uint32_t Fetch();
-
-  void Decode();
-
- public:
-  Cpu6510();
-  start();
-};
-
-Cpu6510::IsSet(Flag flag) { return (p_ >> flag) & 1; }
 
 Cpu6510::Decode(uint32_t instr) {
 
@@ -227,8 +180,218 @@ Cpu6510::Decode(uint32_t instr) {
     case 0xB5:   /* zpx */
     case 0xA1:   /* izx */
     case 0xB1:   /* izy */
-    case 0xAD:   /* */
+    case 0xAD:   /* abs */
+    case 0xBD:   /* abx */
+    case 0xB9: { /* aby */
+      break;
+    }
 
+    /* STA */
+    case 0x85:   /* zp  */
+    case 0x95:   /* zpx */
+    case 0x81:   /* izx */
+    case 0x91:   /* izy */
+    case 0x8D:   /* abs */
+    case 0x9D:   /* abx */
+    case 0x99: { /* aby */
+      break;
+    }
+
+    /* LDX */
+    case 0xA2:   /* imm */
+    case 0xA6:   /* zp  */
+    case 0xB6:   /* zpy */
+    case 0xAE:   /* abs */
+    case 0xBE: { /* aby */
+      break;
+    }
+
+    /* STX */
+    case 0x86:   /* 96  */
+    case 0x96:   /* zpy */
+    case 0x8E: { /* abs */
+      break;
+    }
+
+    /* LDY */
+    case 0xA0:   /* imm */
+    case 0xA4:   /* zp  */
+    case 0xB4:   /* zpx */
+    case 0xAC:   /* abs */
+    case 0xBC: { /* abx */
+      break;
+    }
+
+    /* STY */
+    case 0x84:   /* zp  */
+    case 0x94:   /* zpx */
+    case 0x8C: { /* abs */
+      break;
+    }
+
+    /* TAX */
+    case 0xAA: { /* imp */
+      break;
+     }
+
+    /* TXA */
+    case 0x8A: { /* imp */
+      break;
+    }
+
+    /* TAY */
+    case 0xA8: { /* imp */
+      break;
+    }
+
+    /* TYA */
+    case 0x98: { /* imp */
+      break;
+    }
+
+    /* TSX */
+    case 0xBA: { /* imp */
+      break;
+    }
+
+    /* TXS */
+    case 0x9A: { /* imp */
+      break;
+    }
+
+    /* PLA */
+    case 0x68: { /* imp */
+      break;
+    }
+
+    /* PHA */
+    case 0x48: { /* imp */
+      break;
+    }
+
+    /* PLP */
+    case 0x28: { /* imp */
+      break;
+    }
+
+    /* PHP */
+    case 0x08: { /* imp */
+      break;
+    }
+
+    /* ------------------
+     * JUMP/FLAG COMMANDS
+     */
+
+    /* BPL */
+    case 0x10: { /* rel */
+      break;
+    }
+
+    /* BMI */
+    case 0x30: { /* rel */
+      break;
+    }
+
+    /* BVC */
+    case 0x50: { /* rel */
+      break;
+    }
+
+    /* BVS */
+    case 0x70: { /* rel */
+      break;
+    }
+
+    /* BCC */
+    case 0x90: { /* rel */
+      break;
+    }
+
+    /* BCS */
+    case 0xB0: { /* rel */
+      break;
+    }
+
+    /* BNE */
+    case 0xD0: { /* rel */
+      break;
+    }
+
+    /* BEQ */
+    case 0xF0: { /* rel */
+      break;
+    }
+
+    /* BRK */
+    case 0x00: { /* imp */
+      break;
+    }
+
+    /* RTI */
+    case 0x40: { /* imp */
+      break;
+    }
+
+    /* JSR */
+    case 0x20: { /* abs */
+      break;
+    }
+
+    /* RTS */
+    case 0x60: { /* imp */
+      break;
+    }
+
+    /* JMP */
+    case 0x4C:   /* abs */
+    case 0x6C: { /* ind */
+      break;
+    }
+
+    /* BIT */
+    case 0x24:   /* zp  */
+    case 0x2C: { /* abs */
+      break;
+    }
+
+    /* CLC */
+    case 0x18: { /* imp */
+      break;
+    }
+
+    /* SEC */
+    case 0x38: { /* imp */
+      break;
+    }
+
+    /* CLD */
+    case 0xD8: { /* imp */
+      break;
+    }
+
+    /* SED */
+    case 0xF8: { /* imp */
+      break;
+    }
+
+    /* CLI */
+    case 0x58: { /* imp */
+      break;
+    }
+
+    /* SEI */
+    case 0x78: { /* imp */
+      break;
+    }
+
+    /* CLV */
+    case 0xB8: { /* imp */
+      break;
+    }
+
+    /* NOP */
+    case 0xEA: { /* imp */
+      break;
+    }
   }
-}
-
