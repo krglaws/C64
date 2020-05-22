@@ -181,6 +181,54 @@ Cpu6510::Decode(uint32_t instr) {
       break;
     }
 
+    /* ASL */
+    case 0x0A:   /* imp */
+    case 0x06:   /* zp  */
+    case 0x16:   /* zpx */
+    case 0x0E:   /* abs */
+    case 0x1E: { /* aby */
+      break;
+    }
+
+    /* ROL */
+    case 0x2A:   /* imp */
+    case 0x26:   /* zp  */
+    case 0x36:   /* zpx */
+    case 0x2E:   /* abs */
+    case 0x3E: { /* abx */
+      break;
+    }
+
+    /* LSR */
+    case 0x4A:   /* imp */
+    case 0x46:   /* zp  */
+    case 0x56:   /* zpx */
+    case 0x4E:   /* abs */
+    case 0x5E: { /* abx */
+      break;
+    }
+
+    /* ROR */
+    case 0x6A:   /* imp */
+    case 0x66:   /* zp  */
+    case 0x76:   /* zpx */
+    case 0x6E:   /* abs */
+    case 0x7E: { /* abx */
+      break;
+    }
+
+    /* -------------
+     * MOVE COMMANDS
+     */
+
+    /* LDA */
+    case 0xA9:   /* imm */
+    case 0xA5:   /* zp  */
+    case 0xB5:   /* zpx */
+    case 0xA1:   /* izx */
+    case 0xB1:   /* izy */
+    case 0xAD:   /* */
+
   }
 }
 
