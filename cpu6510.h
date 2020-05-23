@@ -20,7 +20,7 @@ Notes:
      indirecty - [[WORD[PC + 1]] + Y]
 */
 
-typedef enum { N, V, X, B, D, I, Z, C } Flag;
+typedef enum { N=128, V=64, X=32, B=16, D=8, I=2, Z=1, C=0 } Flag;
 
 class Cpu6510 {
 
@@ -36,11 +36,15 @@ class Cpu6510 {
   uint8_t x_; // index register x
   uint8_t y_; // index register y
 
-  int IsSet(Flag flag);
-
   uint32_t Fetch();
 
   void Decode();
+
+  int GetFlag(Flag flag);
+  void SetFlag(Flag flag);
+  void UnsetFlag(Flag flag);
+
+  void ORA(uint32_t instr);
 
  public:
 
