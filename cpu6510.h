@@ -38,13 +38,13 @@ class Cpu6510 {
 
   uint32_t Fetch();
 
-  void Decode();
+  int Decode();
 
   int GetFlag(Flag flag);
   void SetFlag(Flag flag);
   void UnsetFlag(Flag flag);
 
-  void ORA(uint32_t instr);
+  int ORA(uint32_t instr);
 
  public:
 

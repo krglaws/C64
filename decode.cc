@@ -13,14 +13,14 @@ Cpu6510::Decode(uint32_t instr) {
      */
 
     /* ORA */
-    case 0x01:   /* imm */
+    case 0x09:   /* imm */
     case 0x05:   /* zp  */
-    case 0x09:   /* zpx */
-    case 0x0D:   /* izx */
+    case 0x15:   /* zpx */
+    case 0x01:   /* izx */
     case 0x11:   /* izy */
-    case 0x15:   /* abs */
-    case 0x19:   /* abx */
-    case 0x1D: { /* aby */
+    case 0x0D:   /* abs */
+    case 0x1D:   /* abx */
+    case 0x19: { /* aby */
       break;
     }
 
@@ -395,3 +395,4 @@ Cpu6510::Decode(uint32_t instr) {
       break;
     }
   }
+}
