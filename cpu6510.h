@@ -20,7 +20,7 @@ Notes:
      indirecty - [[WORD[PC + 1]] + Y]
 */
 
-typedef enum { N=128, V=64, X=32, B=16, D=8, I=2, Z=1, C=0 } Flag;
+typedef enum { N=128, V=64, X=32, B=16, D=8, I=4, Z=2, C=1 } Flag;
 
 class Cpu6510 {
 

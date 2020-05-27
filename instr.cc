@@ -36,7 +36,7 @@ Cpu6510::ORA(uint8_t opcode) {
 
     /* zpx */
     case 0x15: {
-      uint8_t ptr = RAM[px_ + 1];
+      uint8_t ptr = RAM[pc_ + 1];
       uint8_t arg = RAM[ptr + x_];
       a_ |= arg;
 
