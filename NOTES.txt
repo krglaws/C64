@@ -1,0 +1,19 @@
+
+addressing modes:
+
+    implied -
+
+    zeropage - [BYTE[PC + 1]]
+     zeropagex - [BYTE[PC + 1] + X]
+     zeropagey - [BYTE[PC + 1] + Y]
+
+    absolute - [WORD[PC + 1]]
+     absolutex - [WORD[PC + 1] + X]
+     absolutey - [WORD[PC + 1] + Y]
+
+    immediate - [PC + 1]
+    relative - [PC + SIGNED[PC + 1]]
+
+    indirectx - [WORD[BYTE[PC + 1] + X]]
+    indirecty - [WORD[BYTE[PC + 1]] + Y]
+
