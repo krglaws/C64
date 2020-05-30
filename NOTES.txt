@@ -17,3 +17,20 @@ addressing modes:
     indirectx - [WORD[BYTE[PC + 1] + X]]
     indirecty - [WORD[BYTE[PC + 1]] + Y]
 
+
+cycle details:
+  ASL zeropage:
+    cycle1:
+      PC -> AB
+      [AB] -> DB
+      PC++
+    cycle2:
+      PC -> AB
+      [AB] -> DB
+      PC++
+    cycle3:
+      DB -> AB
+      [AB] -> DB
+    cycle4:
+      execute instruction
+      
