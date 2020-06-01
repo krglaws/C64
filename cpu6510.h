@@ -114,7 +114,7 @@ class Cpu6510 {
   void Ldy();
   void Lsr();
   void Nop();
-  void Ora();
+  void Ora(uint8_t arg);
   void Pha();
   void Php();
   void Pla();

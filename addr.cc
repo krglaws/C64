@@ -1,26 +1,133 @@
 
 #include "cpu6510.h"
 
-Cpu6510::Implied(void (*instr)());
 
-Cpu6510::Immediate(void (instr*)()) {
+Cpu6510::ImmediateRead(void (instr*)(uint8_t)) {
 
   uint16_t pc = GetPc();
-  uint8_t data = ReadB(pc);
   SetPc(pc + 1);
 
-  instr(data);
+  uint8_t arg = ReadByte(pc);
+
+  instr(arg);
 }
 
-Cpu6510::Absolute(void (instr*)());
-Cpu6510::AbsoluteX(void (instr*)());
-Cpu6510::AbsoluteY(void (instr*)());
-Cpu6510::ZeroPage(void (instr*)());
-Cpu6510::ZeroPageX(void (instr*)());
-Cpu6510::ZeroPageY(void (instr*)());
-Cpu6510::Relative(void (instr*)());
-Cpu6510::Indirect(void (instr*)());
-Cpu6510::IndirectX(void (instr*)());
-Cpu6510::Indirecty(void (instr*)());
 
+Cpu6510::ZeroPageRead(void (instr*)(uint8_t)) {
+
+  uint16_t pc = GetPc();
+  SetPc(pc + 1);
+
+  uint8_t addr = ReadByte(pc);
+  uint8_t arg = ReadByte(addr);
+
+  instr(arg);
+}
+
+
+Cpu6510::ZeroPageXRead(void (instr*)(uint8_t)) {
+
+  uint16_t pc = GetPc();
+  SetPc(pc + 1);
+
+  uint8_t addr = ReadByte(pc) + GetX();
+  uint8_t arg = ReadByte(addr);
+
+  instr(arg);
+}
+
+
+Cpu6510::ZeroPageYRead(void (instr*)(uint8_t)) {
+
+  uint16_t pc = GetPc();
+  SetPc(pc + 1);
+
+  uint8_t addr = ReadByte(pc) + GetY();
+  uint8_t arg = ReadByte(addr);
+
+  instr(arg);
+}
+
+
+Cpu6510::IndirectRead(void (instr*)(uint8_t)) {
+
+  uint16_t pc = GetPc();
+  SetPc(pc + 1);
+
+  uint8_t zpaddr = ReadByte(pc);
+  uint16_t addr = ReadWord(zpaddr);
+  uint8_t arg = ReadByte(addr);
+
+  instr(arg);
+}
+
+
+Cpu6510::IndirectXRead(void (instr*)(uint8_t)) {
+
+  uint16_t pc = GetPc();
+  SetPc(pc + 1);
+
+  uint8_t zpaddr = ReadByte(pc);
+  zpaddr += GetX();
+
+  uint16_t addr = ReadWord(zpaddr);
+  uint8_t arg = ReadByte(addr);
+
+  instr(arg);
+}
+
+
+Cpu6510::IndirectYRead(void (instr*)(uint8_t)) {
+
+  uint16_t pc = GetPc();
+  SetPc(pc + 1);
+
+  uint8_t zpaddr = ReadByte(pc);
+  uint16_t addr = ReadWord(zpaddr);
+  addr += GetY();
+
+  uint8_t arg = ReadByte(addr);
+
+  instr(arg);
+}
+
+
+Cpu6510::AbsoluteRead(void (instr*)(uint8_t)) {
+
+  uint16_t pc = GetPc();
+  SetPc(pc + 2);
+
+  uint16_t addr = ReadWord(pc);
+  uint8_t arg = ReadByte(addr);
+
+  instr(arg);
+}
+
+
+Cpu6510::AbsoluteXRead(void (instr*)(uint8_t)) {
+
+  uint16_t pc = GetPc();
+  SetPc(pc + 2);
+
+  uint16_t addr = ReadWord(pc);
+  addr += GetX();
+
+  uint8_t arg = ReadByte(addr);
+
+  instr(arg);
+}
+
+
+Cpu6510::AbsoluteYRead(void (instr*)(uint8_t)) {
+
+  uint16_t pc = GetPc();
+  SetPc(pc + 2);
+
+  uint16_t addr = ReadWord(pc);
+  addr += GetY();
+
+  uint8_t arg = ReadByte(addr);
+
+  instr(arg);
+}
 

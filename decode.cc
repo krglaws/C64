@@ -1,5 +1,5 @@
 
-#include <6510.h>
+#include <cpu6510.h>
 
 
 Cpu6510::Fetch() {
@@ -23,34 +23,34 @@ Cpu6510::Decode() {
    */
 
     /* ORA */
-    case 0x09: return Immediate(&Ora);
-    case 0x05: return ZeroPage(&Ora);
-    case 0x15: return ZeroPageX(&Ora);
-    case 0x01: return IndirectX(&Ora);
-    case 0x11: return IndirectY(&Ora);
-    case 0x0D: return Absolute(&Ora);
-    case 0x1D: return AbsoluteX(&Ora);
-    case 0x19: return AbsoluteY(&Ora);
+    case 0x09: return ImmediateRead(&Ora);
+    case 0x05: return ZeroPageRead(&Ora);
+    case 0x15: return ZeroPageXRead(&Ora);
+    case 0x01: return IndirectXRead(&Ora);
+    case 0x11: return IndirectYRead(&Ora);
+    case 0x0D: return AbsoluteRead(&Ora);
+    case 0x1D: return AbsoluteXRead(&Ora);
+    case 0x19: return AbsoluteYRead(&Ora);
  
     /* AND */
-    case 0x29: return Immediate(&And);
-    case 0x25: return ZeroPage(&And);
-    case 0x35: return ZeroPageX(&And);
-    case 0x21: return IndirectX(&And);
-    case 0x31: return IndirectY(&And);
-    case 0x2D: return Absolute(&And);
-    case 0x3D: return AbsoluteX(&And);
-    case 0x39: return AbsoluteY(&And);
+    case 0x29: return ImmediateRead(&And);
+    case 0x25: return ZeroPageRead(&And);
+    case 0x35: return ZeroPageXRead(&And);
+    case 0x21: return IndirectXRead(&And);
+    case 0x31: return IndirectYRead(&And);
+    case 0x2D: return AbsoluteRead(&And);
+    case 0x3D: return AbsoluteXRead(&And);
+    case 0x39: return AbsoluteYRead(&And);
 
     /* EOR */
-    case 0x49: return Immediate(&Eor);
-    case 0x45: return ZeroPage(&Eor);
-    case 0x55: return ZeroPageX(&Eor);
-    case 0x41: return IndirectX(&Eor);
-    case 0x51: return IndirectY(&Eor);
-    case 0x4D: return Absolute(&Eor);
-    case 0x5D: return AbsoluteX(&Eor);
-    case 0x59: return AbsoluteY(&Eor);
+    case 0x49: return ImmediateRead(&Eor);
+    case 0x45: return ZeroPageRead(&Eor);
+    case 0x55: return ZeroPageXRead(&Eor);
+    case 0x41: return IndirectXRead(&Eor);
+    case 0x51: return IndirectYRead(&Eor);
+    case 0x4D: return AbsoluteRead(&Eor);
+    case 0x5D: return AbsoluteXRead(&Eor);
+    case 0x59: return AbsoluteYRead(&Eor);
 
     /* ADC */
     case 0x69: return Immediate(&Adc);
