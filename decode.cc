@@ -53,80 +53,80 @@ Cpu6510::Decode() {
     case 0x59: return AbsoluteYRead(&Eor);
 
     /* ADC */
-    case 0x69: return Immediate(&Adc);
-    case 0x65: return ZeroPage(&Adc);
-    case 0x75: return ZeroPageX(&Adc);
-    case 0x61: return IndirectX(&Adc);
-    case 0x71: return IndirectY(&Adc);
-    case 0x6D: return Absolute(&Adc);
-    case 0x7D: return AbsoluteX(&Adc);
-    case 0x79: return AbsoluteY(&Adc);
+    case 0x69: return ImmediateRead(&Adc);
+    case 0x65: return ZeroPageRead(&Adc);
+    case 0x75: return ZeroPageXRead(&Adc);
+    case 0x61: return IndirectXRead(&Adc);
+    case 0x71: return IndirectYRead(&Adc);
+    case 0x6D: return AbsoluteRead(&Adc);
+    case 0x7D: return AbsoluteXRead(&Adc);
+    case 0x79: return AbsoluteYRead(&Adc);
 
     /* SBC */
-    case 0xE9: return Immediate(&Sbc);
-    case 0xE5: return ZeroPage(&Sbc);
-    case 0xF5: return ZeroPageX(&Sbc);
-    case 0xE1: return IndirectX(&Sbc);
-    case 0xF1: return IndirectY(&Sbc);
-    case 0xED: return Absolute(&Sbc);
-    case 0xFD: return AbsoluteX(&Sbc);
-    case 0xF9: return AbsoluteY(&Sbc);
+    case 0xE9: return ImmediateRead(&Sbc);
+    case 0xE5: return ZeroPageRead(&Sbc);
+    case 0xF5: return ZeroPageXRead(&Sbc);
+    case 0xE1: return IndirectXRead(&Sbc);
+    case 0xF1: return IndirectYRead(&Sbc);
+    case 0xED: return AbsoluteRead(&Sbc);
+    case 0xFD: return AbsoluteXRead(&Sbc);
+    case 0xF9: return AbsoluteYRead(&Sbc);
 
     /* CMP */
-    case 0xC9: return Immediate(&Sbc);
-    case 0xC5: return ZeroPage(&Sbc);
-    case 0xD5: return ZeroPageX(&Sbc);
-    case 0xC1: return IndirectX(&Sbc);
-    case 0xD1: return IndirectY(&Sbc);
-    case 0xCD: return Absolute(&Sbc);
-    case 0xDD: return AbsoluteX(&Sbc);
-    case 0xD9: return AbsoluteY(&Sbc);
+    case 0xC9: return ImmediateRead(&Sbc);
+    case 0xC5: return ZeroPageRead(&Sbc);
+    case 0xD5: return ZeroPageXRead(&Sbc);
+    case 0xC1: return IndirectXRead(&Sbc);
+    case 0xD1: return IndirectYRead(&Sbc);
+    case 0xCD: return AbsoluteRead(&Sbc);
+    case 0xDD: return AbsoluteXRead(&Sbc);
+    case 0xD9: return AbsoluteYRead(&Sbc);
 
     /* CPX */
-    case 0xE0: return Immediate(&Cpx);
-    case 0xE4: return ZeroPage(&Cpx);
-    case 0xEC: return Absolute(&Cpx);
+    case 0xE0: return ImmediateRead(&Cpx);
+    case 0xE4: return ZeroPageRead(&Cpx);
+    case 0xEC: return AbsoluteRead(&Cpx);
 
     /* CPY */
-    case 0xC0: return Immediate(&Cpy);
-    case 0xC4: return ZeroPage(&Cpy);
-    case 0xCC: return Absolute(&Abs);
+    case 0xC0: return ImmediateRead(&Cpy);
+    case 0xC4: return ZeroPageRead(&Cpy);
+    case 0xCC: return AbsoluteRead(&Abs);
 
     /* DEC */
-    case 0xC6: return ZeroPage(&Dec);
-    case 0xD6: return ZeroPageX(&Dec);
-    case 0xCE: return Absolute(&Dec);
-    case 0xDE: return AbsoluteX(&Dec);
+    case 0xC6: return ZeroPageReadWrite(&Dec);
+    case 0xD6: return ZeroPageXReadWrite(&Dec);
+    case 0xCE: return AbsoluteReadWrite(&Dec);
+    case 0xDE: return AbsoluteXReadWrite(&Dec);
 
     /* DEX */
-    case 0xCA: return Implied(&Dex);
+    case 0xCA: return XReg(&Dex);
 
     /* DEY */
-    case 0x88: return Implied(&Dey);
+    case 0x88: return YReg(&Dey);
 
     /* INC */
-    case 0xE6: return ZeroPage(&Inc);
-    case 0xF6: return ZeroPageX(&Inc);
-    case 0xEE: return Absolute(&Inc);
-    case 0xFE: return AbsoluteX(&Inc);
+    case 0xE6: return ZeroPageRead(&Inc);
+    case 0xF6: return ZeroPageXRead(&Inc);
+    case 0xEE: return AbsoluteRead(&Inc);
+    case 0xFE: return AbsoluteXRead(&Inc);
 
     /* INX */
-    case 0xE8: return Implied(&IndirectX);
+    case 0xE8: return XReg(&Inx);
 
     /* INY */
-    case 0xC8: return Implied(&IndirectY);
+    case 0xC8: return YReg(&Iny);
 
     /* ASL */
-    case 0x0A: return Implied(&Asl);
+    case 0x0A: return Accumulator(&Asl);
     case 0x06: return ZeroPage(&Asl);
     case 0x16: return ZeroPageX(&Asl);
     case 0x0E: return Absolute(&Asl);
     case 0x1E: return AbsoluteY(&Asl);
 
     /* ROL */
-    case 0x2A: return Implied(&Rol);
-    case 0x26: return ZeroPage(&Rol);
-    case 0x36: return ZeroPageX(&Rol);
+    case 0x2A: return Accumulator(&Rol);
+    case 0x26: return ZeroPageReadWrite(&Rol);
+    case 0x36: return ZeroPageXReadWrite(&Rol);
     case 0x2E: return Absolute(&Rol);
     case 0x3E: return AbsoluteX(&Rol);
 

@@ -2,7 +2,7 @@
 #include "cpu6510.h"
 
 
-Cpu6510::Write(uint16_t addr, uint8_t byte) {
+Cpu6510::WriteByte(uint16_t addr, uint8_t byte) {
 
   mem_[addr] = byte;
 }

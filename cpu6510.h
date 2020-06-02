@@ -64,18 +64,23 @@ class Cpu6510 {
 /* ----------------
  * addressing modes
  */
-  int Implied(void (instr*)());
-  int Immediate(void (instr*)());
-  int Absolute(void (instr*)());
-  int AbsoluteX(void (instr*)());
-  int AbsoluteY(void (instr*)());
-  int ZeroPage(void (instr*)());
-  int ZeroPageX(void (instr*)());
-  int ZeroPageY(void (instr*)());
-  int Relative(void (instr*)());
-  int Indirect(void (instr*)());
-  int IndirectX(void (instr*)());
-  int Indirecty(void (instr*)());
+  int ImmediateRead(void (instr*)(uint8_t));
+
+  int AbsoluteRead(void (instr*)(uint8_t));
+  int AbsoluteReadWrite(void (instr*)(uint8_t));
+  int AbsoluteXRead(void (instr*)(uint8_t));
+  int AbsoluteXReadWrite(void (instr*)(uint8_t));
+  int AbsoluteYRead(void (instr*)(uint8_t));
+
+  int ZeroPageRead(void (instr*)(uint8_t));
+  int ZeroPageReadWrite(void (instr*)(uint8_t));
+  int ZeroPageXRead(void (instr*)(uint8_t));
+  int ZeroPageXReadWrite(void (instr*)(uint8_t));
+  int ZeroPageYRead(void (instr*)(uint8_t));
+
+  int IndirectRead(void (instr*)(uint8_t));
+  int IndirectXRead(void (instr*)(uint8_t));
+  int IndirectYRead(void (instr*)(uint8_t));
 
 /* ------------
  * instructions

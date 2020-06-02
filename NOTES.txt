@@ -2,6 +2,8 @@
 addressing modes:
 
   Accumulator
+  XReg
+  YReg
   immediate - [PC + 1]
   absolute - [WORD[PC + 1]]
   absolutex - [WORD[PC + 1] + X]
@@ -13,6 +15,14 @@ addressing modes:
   relative - [PC + SIGNED[PC + 1]]
   indirectx - [WORD[BYTE[PC + 1] + X]]
   indirecty - [WORD[BYTE[PC + 1]] + Y]
+
+
+page boundary crossing:
+
+  absolute x/y -
+    MEM[@PC+1[0x0001] + @X[0xff]]
+  indirect y -
+    MEM[WORD[@PC+1[0x01]] + @Y[0xff]]]
 
 
 cycle details:
@@ -29,5 +39,4 @@ cycle details:
       DB -> AB
       [AB] -> DB
     cycle4:
-      
- 
+
